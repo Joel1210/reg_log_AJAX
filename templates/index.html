@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='css/style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>Login & Registration</title>
+</head>
+<body>
+    <div class="container col-lg-7 p-3" style="background-color: lightgray;">
+        <h1>Login and Registration</h1>
+        <div class="main_content row">
+            <div class="col-sm-5 text-left">
+                
+                <h2>Register here!</h2>
+                    <form class="form" action="/register" method="POST" id="regForm">
+                        <div class="form-group">
+                            {% with messages = get_flashed_messages(category_filter=['firstname']) %}
+                            <!-- declare a variable called messages -->
+                            {% if messages %}
+                            <!-- check if there are any messages -->
+                            {% for message in messages %}
+                            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <p>First Name: <input type="text" name="rfname" class="form-control"></p>
+                        </div>            
+
+                        <div class="form-group"> 
+                            {% with messages = get_flashed_messages(category_filter=['lastname']) %}
+                            <!-- declare a variable called messages -->
+                            {% if messages %}
+                            <!-- check if there are any messages -->
+                            {% for message in messages %}
+                            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <p>Last Name: <input type="text" name="rlname" class="form-control"></p>
+                        </div>
+
+                        <div class="form-group"> 
+                            <div id="usernameMsg"></div>
+                            <p>UserName: <input type="text" id="username" name="rusername" class="form-control"></p>
+                        </div>
+
+                        <div class="form-group">
+                            {% with messages = get_flashed_messages(category_filter=['email']) %}
+                            <!-- declare a variable called messages -->
+                            {% if messages %}
+                            <!-- check if there are any messages -->
+                            {% for message in messages %}
+                            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <p>Email: <input type="text" name="remail" class="form-control"></p>
+                        </div>
+
+                        <div class="form-group">
+                            {% with messages = get_flashed_messages(category_filter=['password']) %}
+                            <!-- declare a variable called messages -->
+                            {% if messages %}
+                            <!-- check if there are any messages -->
+                            {% for message in messages %}
+                            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <p>Password: <input type="password" name="rpassword" class="form-control"></p>
+                        </div>
+
+                        <div class="form-group">
+                            {% with messages = get_flashed_messages(category_filter=['passwordconfirm']) %}
+                            <!-- declare a variable called messages -->
+                            {% if messages %}
+                            <!-- check if there are any messages -->
+                            {% for message in messages %}
+                            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <p>Confirm password: <input type="password" name="rconfirm" class="form-control"></p>
+                        </div>
+                        <input type="submit" value="Register!" class= "btn btn-primary">
+                       
+
+                    </form>
+            </div>
+            <div class="col-sm-6 text-right">
+                <h2>Login here!</h2>
+                {% with messages = get_flashed_messages(category_filter=['loginerror', 'pwerror']) %}
+                            <!-- declare a variable called messages -->
+                            {% if messages %}
+                            <!-- check if there are any messages -->
+                            {% for message in messages %}
+                            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                <form class="form" action="/login" method="POST">
+                    <div class="form-group">   
+                        <p>Email: <input type="text" name="lemail"></p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <p>Password: <input type="password" name="lpassword"></p>
+                    </div>
+
+                        <input type="submit" value="Login!" class= "btn btn-primary">
+                    </form>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>

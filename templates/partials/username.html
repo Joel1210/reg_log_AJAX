@@ -1,0 +1,6 @@
+{% if found == True and name_length > 5 %}
+<p class="text-danger">Username has been taken.</p>
+{% endif %}
+{% if found == False and name_length > 5 %}
+<p class="text-success"> This username is available</p>
+{% endif %}
